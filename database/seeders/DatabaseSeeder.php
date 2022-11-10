@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('usuario')->insert([
+        DB::table('usuarios')->insert([
             'nome' => Str::random(10),
             'senha' => Hash::make('password'),
             'email' => Str::random(10).'@gmail.com',
@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
             'updated_at' => now(),
         ]);
 
-        DB::table('usuario')->insert([
+        DB::table('usuarios')->insert([
             'nome' => Str::random(10),
             'senha' => Hash::make('password'),
             'email' => Str::random(10).'@gmail.com',
@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
             'updated_at' => now(),
         ]);
 
-        DB::table('item')->insert([
+        DB::table('items')->insert([
             'nome' => Str::random(10),
             'devolvido' => false,
             'emprestador_id' => 1,
