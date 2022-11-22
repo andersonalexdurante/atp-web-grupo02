@@ -16,33 +16,32 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('usuarios')->insert([
-            'nome' => Str::random(10),
-            'senha' => Hash::make('password'),
+        DB::table('users')->insert([
+            'name' => Str::random(10),
+            'password' => Hash::make('password'),
             'email' => Str::random(10).'@gmail.com',
-            'telefone' => Str::random(10),
+            'phone' => Str::random(10),
             'created_at' => now(),
-            'updated_at' => now(),
+            'updated_at' => now()
         ]);
 
-        DB::table('usuarios')->insert([
-            'nome' => Str::random(10),
-            'senha' => Hash::make('password'),
+        DB::table('users')->insert([
+            'name' => Str::random(10),
+            'password' => Hash::make('password'),
             'email' => Str::random(10).'@gmail.com',
-            'telefone' => Str::random(10),
+            'phone' => Str::random(10),
             'created_at' => now(),
-            'updated_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('items')->insert([
-            'nome' => Str::random(10),
-            'devolvido' => false,
-            'emprestador_id' => 1,
-            'dono_id' => 2,
-            'emprestado_em' => now(),
-            'previsto_devolucao_em' => now(),
+            'name' => Str::random(10),
+            'returned' => false,
+            'idReceiver' => 1,
+            'idOwner' => 2,
+            'dateReturnForecast' => now(),
             'created_at' => now(),
-            'updated_at' => now(),
+            'updated_at' => now()
         ]);
     }
 }

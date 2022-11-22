@@ -10,11 +10,11 @@ class Item extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nome',
-        'devolvido',
-        'emprestador_id',
-        'dono_id',
-        'emprestado_em',
-        'previsto_devolucao_em',
+        'name',
+        'returned',
+        'idReceiver',
+        'idOwner',
+        'dateBorrowed',
+        'dateReturnForecast',
     ];
 }

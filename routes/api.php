@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\api\UsuarioController;
+use \App\Http\Controllers\api\ItemController;
+use \App\Http\Controllers\api\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +20,14 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::middleware('auth:sanctum')->group( function() {
+    Route::get('usuario/itens', [ItemController::class, 'index']);
+    Route::post('usuario/itens', [ItemController::class, 'store']);
+    Route::get('usuario/itens/{item}', [ItemController::class, 'show']);
+    Route::put('usuario/itens/{item}', [ItemController::class, 'update']);
+}
+);
+
+Route::post('/login', [AuthController::class, "authenticate"]);
+Route::post('/usuario', [UsuarioController::class, "store"]);
