@@ -17,15 +17,12 @@ use \App\Http\Controllers\api\AuthController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::middleware('auth:sanctum')->group( function() {
+    Route::patch('usuario', [UsuarioController::class, "update"]);
     Route::get('usuario/itens', [ItemController::class, 'index']);
     Route::post('usuario/itens', [ItemController::class, 'store']);
     Route::get('usuario/itens/{item}', [ItemController::class, 'show']);
-    Route::put('usuario/itens/{item}', [ItemController::class, 'update']);
+    Route::patch('usuario/itens/{item}', [ItemController::class, 'update']);
 }
 );
 

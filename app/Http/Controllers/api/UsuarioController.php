@@ -13,4 +13,19 @@ class UsuarioController extends Controller
         return User::create($request->all());
     }
 
+    public function update(Request $request) {
+        $usuario = auth()->user();
+        
+        if($request->email != null && $request->email != "") {
+            $usuario->email = $request->email;    
+        }
+        if($request->phone != null && $request->phone != "") {
+            $usuario->phone = $request->phone;    
+        }
+
+        $usuario->save();
+
+        return response("Contatos alterados com sucesso.", 204);
+    }
+
 }
