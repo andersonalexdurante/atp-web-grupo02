@@ -16,5 +16,6 @@ class Item extends Model
         'idOwner',
         'dateBorrowed',
         'dateReturnForecast',
+        'dateReturned'
     ];
 }

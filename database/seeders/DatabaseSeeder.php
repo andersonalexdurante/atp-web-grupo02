@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'name' => Str::random(10),
+            'name' => 'Gustavo Alexandre',
             'password' => Hash::make('password'),
             'email' => Str::random(10).'@gmail.com',
             'phone' => Str::random(10),
@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'name' => Str::random(10),
+            'name' => 'Anderson Alex',
             'password' => Hash::make('password'),
             'email' => Str::random(10).'@gmail.com',
             'phone' => Str::random(10),
@@ -40,6 +40,24 @@ class DatabaseSeeder extends Seeder
             'idReceiver' => 1,
             'idOwner' => 2,
             'dateReturnForecast' => now(),
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        DB::table('items')->insert([
+            'name' => Str::random(10),
+            'returned' => false,
+            'idReceiver' => 1,
+            'idOwner' => 2,
+            'dateBorrowed' => now(),
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        DB::table('items')->insert([
+            'name' => Str::random(10),
+            'returned' => true,
+            'idReceiver' => 1,
+            'idOwner' => 2,
+            'dateReturned' => now(),
             'created_at' => now(),
             'updated_at' => now()
         ]);
