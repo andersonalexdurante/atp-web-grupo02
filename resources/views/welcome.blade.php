@@ -13,7 +13,7 @@
                     <li><a href="/" class="nav-link mx-1 text-dark fw-semibold">Items entregues</a></li>
                 </ul>
                 <div class="text-end d-flex align-items-center">
-                    <p class="m-0 mx-1">Gustavo Alexandre</p>
+                    <p class="m-0 mx-1">{{ Auth::user()->name}}</p>
                     <button type="button" class="btn btn-danger px-3 mx-1">Sair</button>
                 </div>
             </div>
@@ -25,22 +25,23 @@
         </h1>
         <a href="/itens/create" role="button" type="button" class="my-2 btn btn-dark">Cadastrar novo item</a>
         <div class="d-flex gap-3 flex-wrap">
-            @foreach ($itens as $item)
-            <div @class(['card mb-3', 'text-bg-light' => $item->returned == 1, 'text-bg-warning' => $item->returned == 0]) style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">{{$item->name}}</h5>
-                    @if ($item->returned == 0)
-                        <h6 class="card-text">item não devolvido</h6>
-                        <p class="card-text"><small class="text-muted">previsão para devolução: {{date_format(date_create($item->dateReturnForecast),"Y/m/d \á\s H:i")}}</small></p>
-                    @else
-                        <h6 class="card-text">item ja devolvido</h6>
-                        <p class="card-text"><small class="text-muted">data em que foi devolvido: {{date_format(date_create($item->dateBorrowed),"Y/m/d \á\s H:i")}}</small></p>
-                    @endif
-                    
+            @if($itens)
+                @foreach ($itens as $item)
+                <div @class(['card mb-3', 'text-bg-light' => $item->returned == 1, 'text-bg-warning' => $item->returned == 0]) style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{$item->name}}</h5>
+                        @if ($item->returned == 0)
+                            <h6 class="card-text">item não devolvido</h6>
+                            <p class="card-text"><small class="text-muted">previsão para devolução: {{date_format(date_create($item->dateReturnForecast),"Y/m/d \á\s H:i")}}</small></p>
+                        @else
+                            <h6 class="card-text">item ja devolvido</h6>
+                            <p class="card-text"><small class="text-muted">data em que foi devolvido: {{date_format(date_create($item->dateBorrowed),"Y/m/d \á\s H:i")}}</small></p>
+                        @endif
+                        
+                    </div>
                 </div>
-            </div>
-            @endforeach
-
+                @endforeach
+            @endif
         </div>
     </div>
 </x-layout>

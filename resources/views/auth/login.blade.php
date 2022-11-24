@@ -3,7 +3,7 @@
         Entrar
     </x-slot>
     <div class="d-flex justify-content-center align-items-center" style="height: 100vh">
-        <form method="POST" action="/api/autenticar">
+        <form method="post" action="/autenticar">
             @csrf
             <div class="mb-3">
                 <img src="images/login.svg" alt="imagem de login" style="height: 300px">
@@ -18,6 +18,7 @@
                 <input type="password" class="form-control" id="password" name="password">
             </div>
             <button type="submit" class="btn btn-primary">Entrar</button>
+            <a href="/registrar">não tem uma conta?</a>
         </form>
     </div>
 </x-layout>

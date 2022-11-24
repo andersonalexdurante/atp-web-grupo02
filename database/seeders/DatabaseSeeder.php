@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password'),
             'email' => Str::random(10).'@gmail.com',
             'phone' => Str::random(10),
+            'remember_token' => 0,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -30,6 +31,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password'),
             'email' => Str::random(10).'@gmail.com',
             'phone' => Str::random(10),
+            'remember_token' => 0,
             'created_at' => now(),
             'updated_at' => now()
         ]);

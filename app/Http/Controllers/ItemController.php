@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\api;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -12,11 +12,11 @@ use Illuminate\Support\Facades\Response;
 class ItemController extends Controller
 {
     public function index() {
-        $userId = auth()->user()->id;
+        $user = Auth::user();
         
-        $itens = Item::where("idOwner", $userId)->get();
+        $itens = Item::where("idOwner", $user?->id)->get();
 
-        return view('home', ['$itens' => $itens]);
+        return view('welcome', ['itens' => $itens]);
     }
 
     public function store(Request $request) {
