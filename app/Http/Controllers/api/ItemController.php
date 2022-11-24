@@ -14,7 +14,9 @@ class ItemController extends Controller
     public function index() {
         $userId = auth()->user()->id;
         
-        return Item::where("idOwner", $userId)->get();
+        $itens = Item::where("idOwner", $userId)->get();
+
+        return view('home', ['$itens' => $itens]);
     }
 
     public function store(Request $request) {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Cookie;
 
 class AuthController extends Controller
 
@@ -24,13 +25,11 @@ class AuthController extends Controller
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
-        /* ------------ Create a new personal access token for the user. ------------ */
         $token = auth()->user()->createToken('MyApiToken')->plainTextToken;
 
-        return response()->json([
-            'access_token' => $token,
-            'token_type' => 'Bearer'
-        ]);
+        Cookie::create("access_token", "Bearer". ' '.$token);
+        
+        return redirect()->route("home")->header("access_token", Cookie::get("access_token"));
     }
 
 }
