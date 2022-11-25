@@ -2,7 +2,7 @@
     <x-slot:title>
         Entrar
     </x-slot>
-    <div class="d-flex justify-content-center align-items-center" style="height: 100vh">
+    <div class="d-flex justify-content-center align-items-center my-5" style="height: 100vh">
         <form method="post" action="/autenticar">
             @csrf
             <div class="mb-3">
@@ -17,8 +17,17 @@
                 <label for="password" class="form-label">Senha</label>
                 <input type="password" class="form-control" id="password" name="password">
             </div>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul class="m-0">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <button type="submit" class="btn btn-primary">Entrar</button>
-            <a href="/registrar">não tem uma conta?</a>
+            <a href="/registrar">ainda não tem uma conta?</a>
         </form>
     </div>
 </x-layout>

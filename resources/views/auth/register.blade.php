@@ -2,7 +2,7 @@
     <x-slot:title>
         Registrar
     </x-slot>
-    <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh">
+    <div class="d-flex justify-content-center align-items-center my-5" style="min-height: 100vh">
         <form method="POST" action="/registrar">
             @csrf
             <div class="mb-3">
@@ -23,12 +23,22 @@
             </div>
             <div class="mb-3">
                 <label for="senha" class="form-label">Senha</label>
-                <input type="password" class="form-control" id="senha" name="password">
+                <input type="password" class="form-control" id="senha" name="password" aria-describedby="password_help">
+                <div id="password_help" class="form-text">Sua senha deve conter 8 caracteres</div>
             </div>
             <div class="mb-3">
-                <label for="resenha" class="form-label">Repetir Senha</label>
-                <input type="password" class="form-control" id="resenha">
+                <label for="password_confirmation" class="form-label">Repetir Senha</label>
+                <input type="password" class="form-control" id="password_confirmation">
             </div>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul class="m-0">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <button type="submit" class="btn btn-primary">Cadastrar</button>
             <a href="/login">já tem uma conta?</a>
         </form>
