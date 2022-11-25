@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Item;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Response;
@@ -13,43 +14,61 @@ class ItemController extends Controller
 {
     public function index() {
         $user = Auth::user();
-        
-        $itens = Item::where("idOwner", $user?->id)->get();
-
+        // itens que são do dono e que são returned == 0
+        $itens = Item::where('idOwner', $user?->id)->where('returned', 0)->get();
         return view('welcome', ['itens' => $itens]);
+    }
+
+    public function delivered() {
+        $user = Auth::user();
+        // itens que são do dono e que são returned == 0
+        $itens = Item::where('idOwner', $user?->id)->where('returned', 1)->get();
+        return view('itens.delivered', ['itens' => $itens]);
+    }
+
+    public function create() {
+        $user = Auth::user();
+        // todos os usuarios menos o logado
+        $users = User::where("id", "!=", $user?->id)->get();
+        return view('itens.create', ['users' => $users]);
     }
 
     public function store(Request $request) {
         $item = new Item;
         $item->name = $request->name;
-        $item->idOwner = $request->idOwner;
-        $item->idReceiver = $request->idReceiver;
+        $item->idOwner = Auth::user()->id;
+        $item->contactReceiver = $request->contactReceiver;
+        $item->nameReceiver = $request->nameReceiver;
         $item->dateReturnForecast = $request->dateReturnForecast;
+        $item->dateBorrowed = now();
         $item->returned = false;
 
         $item->save();
 
-        return $item;
+        return redirect()->route('home');
     }
 
     public function show(Request $request) {
         $userId = auth()->user()->id;
         
-        return Item::where([['idOwner', '=', $userId],
+        $item = Item::where([['idOwner', '=', $userId],
         ['id', '=', $request->item]])->firstOrFail();
+
+        return view('itens.show', ['item' => $item]);
+        
     }
 
     public function update(Request $request) {
-        $userId = auth()->user()->id; 
+        $userId = auth()->user()->id;
 
         $item = Item::where([['idOwner', '=', $userId],
         ['id', '=', $request->item]])->firstOrFail();
 
-        $item->dateBorrowed = now();
+        $item->dateReturned = now();
         $item->returned = true;
 
         $item->save();
 
-        return response("Item marcado como entregue.", 204);
+        return redirect()->route('home');
     }
 }

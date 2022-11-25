@@ -39,7 +39,8 @@ class DatabaseSeeder extends Seeder
         DB::table('items')->insert([
             'name' => Str::random(10),
             'returned' => false,
-            'idReceiver' => 1,
+            'contactReceiver' => "123456789",
+            'nameReceiver' => "Anderson",
             'idOwner' => 2,
             'dateReturnForecast' => now(),
             'created_at' => now(),
@@ -48,7 +49,8 @@ class DatabaseSeeder extends Seeder
         DB::table('items')->insert([
             'name' => Str::random(10),
             'returned' => false,
-            'idReceiver' => 1,
+            'contactReceiver' => "123456789",
+            'nameReceiver' => "Anderson",
             'idOwner' => 2,
             'dateBorrowed' => now(),
             'created_at' => now(),
@@ -57,7 +59,8 @@ class DatabaseSeeder extends Seeder
         DB::table('items')->insert([
             'name' => Str::random(10),
             'returned' => true,
-            'idReceiver' => 1,
+            'contactReceiver' => "123456789",
+            'nameReceiver' => "Anderson",
             'idOwner' => 2,
             'dateReturned' => now(),
             'created_at' => now(),

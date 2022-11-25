@@ -16,14 +16,14 @@ return new class extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('idOwner');
-            $table->unsignedBigInteger('idReceiver');
             $table->string('name', 64)->nullable(false);
+            $table->string('nameReceiver');
+            $table->string('contactReceiver');
             $table->timestamp('dateBorrowed')->nullable(false)->default(now());
             $table->timestamp('dateReturnForecast')->nullable(true);
             $table->timestamp('dateReturned')->nullable(true);
             $table->boolean('returned')->nullable(false);
             $table->foreign('idOwner')->references('id')->on('users');
-            $table->foreign('idReceiver')->references('id')->on('users');
             $table->timestamps();
         });
     }

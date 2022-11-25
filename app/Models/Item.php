@@ -12,7 +12,8 @@ class Item extends Model
     protected $fillable = [
         'name',
         'returned',
-        'idReceiver',
+        'contactReceiver',
+        'nameReceiver',
         'idOwner',
         'dateBorrowed',
         'dateReturnForecast',
