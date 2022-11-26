@@ -10,7 +10,7 @@
         <div class="card" style="width: auto;">
             <div class="card-body text-center">
                 <h5 class="card-title">{{$item->name}}</h5>
-                <p class="card-text">nome de quem recebeu: {{$item->nameReceiver}}</p>
+                <p class="card-text">nome de para quem emprestou: {{$item->nameReceiver}}</p>
                 <p class="card-text">contato: {{$item->contactReceiver}}</p>
                 <p class="card-text">data emprestada: {{date_format(date_create($item->dataBorrowed),"Y/m/d \á\s H:i")}}</p>
                 <p class="card-text">data prevista para devolver: {{date_format(date_create($item->dateReturnForecast),"Y/m/d \á\s H:i")}}</p>

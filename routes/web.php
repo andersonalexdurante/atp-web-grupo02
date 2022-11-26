@@ -6,30 +6,28 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 Route::fallback(function () {
-    return redirect()->route('home');
+    return redirect()->route('view.home');
 });
 
-Route::get('/login', function () {
+Route::get('autenticar', function () {
     return view('auth.login');
-})->name("login");
-
-Route::get('/registrar', function () {
+})->name("view.login");
+Route::get('registrar', function () {
     return view('auth.register');
-});
+})->name("view.register");
 
-Route::post('/autenticar', [AuthController::class, "authenticate"])->name("auth");
-Route::post('/registrar', [AuthController::class, "register"])->name("register");
+Route::post('autenticar', [AuthController::class, "authenticate"])->name("api.login");
+Route::post('registrar', [AuthController::class, "register"])->name("api.register");
 
 Route::middleware('auth')->group( function() {
-    Route::get('home', [ItemController::class, 'index'])->name('home');
-    Route::get('itens/create', [ItemController::class, 'create'])->name('itens.create');  
-
-    Route::get('usuario', [UsuarioController::class, 'edit'])->name('usuarios.edit');
-    Route::patch('usuario', [UsuarioController::class, "update"]);
-    Route::get('usuario/itens', [ItemController::class, 'index']);
-    Route::post('usuario/itens', [ItemController::class, 'store']);
-    Route::get('usuario/itens/{item}', [ItemController::class, 'show'])->name('itens.show');
-    Route::patch('usuario/itens/{item}', [ItemController::class, 'update']);
-    Route::get('usuario/entregues', [ItemController::class, 'delivered'])->name('itens.delivered');
+    // view
+    Route::get('home', [ItemController::class, 'index'])->name('view.home');
+    Route::get('item/create', [ItemController::class, 'create'])->name('view.item.create');  
+    Route::get('item/{item}', [ItemController::class, 'show'])->name('view.item.show');
+    Route::get('itens/entregues', [ItemController::class, 'delivered'])->name('view.itens.delivered');
+    Route::get('perfil/edit', [UsuarioController::class, 'edit'])->name('view.usuario.edit');
+    // api
+    Route::post('item/create', [ItemController::class, 'store'])->name('api.item.create');
+    Route::patch('item/{item}', [ItemController::class, 'update'])->name('api.item.update');
+    Route::patch('perfil/edit', [UsuarioController::class, "update"])->name('api.usuario.update');
 });
-

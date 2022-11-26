@@ -28,7 +28,7 @@
             </div>
             <div class="mb-3">
                 <label for="password_confirmation" class="form-label">Repetir Senha</label>
-                <input type="password" class="form-control" id="password_confirmation">
+                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
             </div>
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -40,7 +40,7 @@
                 </div>
             @endif
             <button type="submit" class="btn btn-primary">Cadastrar</button>
-            <a href="/login">já tem uma conta?</a>
+            <a href="{{route('view.register')}}">já tem uma conta?</a>
         </form>
     </div>
 </x-layout>

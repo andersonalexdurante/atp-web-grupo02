@@ -11,20 +11,29 @@
             @csrf
             <div class="col-md-12">
                 <label for="name" class="form-label">Nome do item</label>
-                <input type="text" class="form-control" id="name" name="name" required>
+                <input type="text" class="form-control" id="name" name="name">
             </div>
             <div class="col-md-6">
                 <label for="nameReceiver" class="form-label">Nome para quem emprestou</label>
-                <input id="nameReceiver" class="form-control" name="nameReceiver" required type="text">
+                <input id="nameReceiver" class="form-control" name="nameReceiver" type="text">
             </div>
             <div class="col-md-6">
                 <label for="contactReceiver" class="form-label">Contato</label>
-                <input type="text" class="form-control" id="contactReceiver" name="contactReceiver" required>
+                <input type="text" class="form-control" id="contactReceiver" name="contactReceiver">
             </div>
             <div class="col-12">
                 <label for="dateReturnForecast" class="form-label">Data prevista para devolução</label>
                 <input type="datetime-local" class="form-control" id="dateReturnForecast" name="dateReturnForecast">
             </div>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul class="m-0">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="col-12">
                 <button type="submit" class="btn btn-dark">Cadastrar</button>
             </div>

@@ -10,7 +10,7 @@
         <h1 class="text-center my-3 fs-2">
             Itens ja devolvidos
         </h1>
-        <a href="/itens/create" role="button" type="button" class="my-2 btn btn-primary">Cadastrar novos itens</a>
+        <a href="{{route('view.item.create')}}" role="button" type="button" class="my-2 btn btn-primary">Cadastrar novos itens</a>
         <div class="d-flex gap-3 flex-wrap">
             @if($itens)
                 @foreach ($itens as $item)

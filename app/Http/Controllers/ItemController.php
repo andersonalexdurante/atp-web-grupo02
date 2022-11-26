@@ -34,6 +34,18 @@ class ItemController extends Controller
     }
 
     public function store(Request $request) {
+
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'contactReceiver' => ['required', 'string', 'max:255'],
+            'nameReceiver' => ['required', 'string', 'max:255'],
+        ],[
+            'name.required' => 'O nome do item é obrigatório',
+            'contactReceiver.required' => 'O contato do receptor é obrigatório',
+            'nameReceiver.required' => 'O nome do receptor é obrigatório',
+        ]);
+
+
         $item = new Item;
         $item->name = $request->name;
         $item->idOwner = Auth::user()->id;

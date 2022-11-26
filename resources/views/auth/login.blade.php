@@ -27,7 +27,7 @@
                 </div>
             @endif
             <button type="submit" class="btn btn-primary">Entrar</button>
-            <a href="/registrar">ainda não tem uma conta?</a>
+            <a href="{{route('view.register')}}">ainda não tem uma conta?</a>
         </form>
     </div>
 </x-layout>

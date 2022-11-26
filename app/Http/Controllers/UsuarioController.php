@@ -21,7 +21,7 @@ class UsuarioController extends Controller
         $usuario->save();
         
 
-        return redirect()->route('home');
+        return redirect()->route('view.home');
     }
 
     public function edit(Request $request) {
