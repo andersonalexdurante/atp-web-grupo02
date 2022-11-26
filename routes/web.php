@@ -30,4 +30,5 @@ Route::middleware('auth')->group( function() {
     Route::post('item/create', [ItemController::class, 'store'])->name('api.item.create');
     Route::patch('item/{item}', [ItemController::class, 'update'])->name('api.item.update');
     Route::patch('perfil/edit', [UsuarioController::class, "update"])->name('api.usuario.update');
+    Route::post('logout', [AuthController::class, "logout"])->name('api.logout');
 });

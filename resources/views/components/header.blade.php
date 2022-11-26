@@ -11,7 +11,10 @@
             <div class="text-end d-flex align-items-center">
                 <p class="m-0 mx-1">{{ Auth::user()->name}}</p>
                 <a href="{{route('view.usuario.edit')}}" type="button" class="btn btn-dark px-3 mx-1">Perfil</a>
-                <button type="button" class="btn btn-danger px-3 mx-1">Sair</button>
+                <form method="post" action="{{route('api.logout')}}">
+                    @csrf
+                    <button type="submit" class="btn btn-danger px-3 mx-1">Sair</button>
+                </form>
             </div>
         </div>
     </div>
