@@ -7,7 +7,7 @@
         <h1 class="text-center my-3 fs-2">
             Cadastro de item emprestado
         </h1>
-        <form class="row g-3" method="post" action="/usuario/itens">
+        <form class="row g-3" method="post" action="{{route('api.item.create')}}">
             @csrf
             <div class="col-md-12">
                 <label for="name" class="form-label">Nome do item</label>

@@ -57,7 +57,7 @@ class ItemController extends Controller
 
         $item->save();
 
-        return redirect()->route('home');
+        return redirect()->route('view.home');
     }
 
     public function show(Request $request) {
@@ -81,6 +81,6 @@ class ItemController extends Controller
 
         $item->save();
 
-        return redirect()->route('home');
+        return redirect()->route('view.home');
     }
 }

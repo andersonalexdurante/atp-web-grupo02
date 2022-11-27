@@ -4,7 +4,7 @@
     </x-slot>
     <x-header></x-header>
     <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh">
-        <form method="POST" action="/usuario">
+        <form method="POST" action="/perfil/edit">
             @method('PATCH')
             @csrf
             <p class="fs-2 text-center">{{Auth::User()->name}}</p>
