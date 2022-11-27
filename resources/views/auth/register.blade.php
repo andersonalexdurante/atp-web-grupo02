@@ -40,7 +40,7 @@
                 </div>
             @endif
             <button type="submit" class="btn btn-primary">Cadastrar</button>
-            <a href="{{route('view.register')}}">já tem uma conta?</a>
+            <a href="{{route('login')}}">já tem uma conta?</a>
         </form>
     </div>
 </x-layout>
