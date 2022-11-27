@@ -11,10 +11,10 @@ Route::fallback(function () {
 
 Route::get('autenticar', function () {
     return view('auth.login');
-})->name("view.login");
+})->name("login");
 Route::get('registrar', function () {
     return view('auth.register');
-})->name("view.register");
+})->name("register");
 
 Route::post('autenticar', [AuthController::class, "authenticate"])->name("api.login");
 Route::post('registrar', [AuthController::class, "register"])->name("api.register");
